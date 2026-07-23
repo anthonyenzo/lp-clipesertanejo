@@ -6,15 +6,17 @@ const CHECKOUT_CLIPES = "https://www.ggcheckout.com/checkout/v5/z3cgSIXCqNHQ5mgq
 const CHECKOUT_COMPLETO = "https://www.ggcheckout.com/checkout/v5/iRllVEQ8RqbFberkjoCo";
 const WHATSAPP = "https://wa.me/5538988259140?text=Ol%C3%A1!%20Vim%20pelo%20suporte%20do%20Pack%20de%20Clipes";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_DEPLOY_BASE_PATH ?? "";
+
 const albums = [
-  { image: "/album-gusttavo.png", title: "Feito à Mão", artist: "Gusttavo Lima" },
-  { image: "/album-simone.png", title: "Cantando Sua História", artist: "Simone Mendes" },
-  { image: "/album-ze-neto.png", title: "Intenso", artist: "Zé Neto & Cristiano" },
-  { image: "/album-murilo.png", title: "Acústico", artist: "Murilo Huff" },
-  { image: "/album-clayton.png", title: "Ao Vivo em Brasília", artist: "Clayton & Romário" },
-  { image: "/album-ana.png", title: "Herança Boiadeira", artist: "Ana Castela" },
-  { image: "/album-lauana.png", title: "Apruma, Beagá!", artist: "Lauana Prado" },
-  { image: "/album-ce-ta-doido.jpg", title: "Cê Tá Doido", artist: "Todas as edições" },
+  { image: `${BASE_PATH}/album-gusttavo.png`, title: "Feito à Mão", artist: "Gusttavo Lima" },
+  { image: `${BASE_PATH}/album-simone.png`, title: "Cantando Sua História", artist: "Simone Mendes" },
+  { image: `${BASE_PATH}/album-ze-neto.png`, title: "Intenso", artist: "Zé Neto & Cristiano" },
+  { image: `${BASE_PATH}/album-murilo.png`, title: "Acústico", artist: "Murilo Huff" },
+  { image: `${BASE_PATH}/album-clayton.png`, title: "Ao Vivo em Brasília", artist: "Clayton & Romário" },
+  { image: `${BASE_PATH}/album-ana.png`, title: "Herança Boiadeira", artist: "Ana Castela" },
+  { image: `${BASE_PATH}/album-lauana.png`, title: "Apruma, Beagá!", artist: "Lauana Prado" },
+  { image: `${BASE_PATH}/album-ce-ta-doido.jpg`, title: "Cê Tá Doido", artist: "Todas as edições" },
 ];
 
 const testimonials = [

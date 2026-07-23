@@ -1,32 +1,34 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("host") ?? "brazhits.com.br";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
-  const ogImage = `${protocol}://${host}/og.png`;
+const publicUrl = "https://brazhits.com.br/pack-de-clipes/";
+const ogImage = `${publicUrl}og.png`;
 
-  return {
-    title: "Pack de Clipes Sertanejos Full HD | BrazHits",
-    description: "+500 clipes sertanejos em Full HD, organizados e prontos para carro, TV, PC e festas. Acesso vitalício e atualizações mensais.",
-    icons: { icon: "/logo-brazhits.png", shortcut: "/logo-brazhits.png", apple: "/logo-brazhits.png" },
-    openGraph: {
-      title: "+500 Clipes Sertanejos em Full HD | BrazHits",
-      description: "Transforme qualquer tela em um show sertanejo. Acesso vitalício, download fácil e atualizações mensais.",
-      type: "website",
-      locale: "pt_BR",
-      images: [{ url: ogImage, width: 1736, height: 909, alt: "BrazHits — mais de 500 clipes sertanejos em Full HD" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "+500 Clipes Sertanejos em Full HD | BrazHits",
-      description: "Clipes em 1080p para carro, TV, PC e festas — mesmo sem internet.",
-      images: [ogImage],
-    },
-  };
-}
+export const metadata: Metadata = {
+  metadataBase: new URL(publicUrl),
+  title: "Pack de Clipes Sertanejos Full HD | BrazHits",
+  description: "+500 clipes sertanejos em Full HD, organizados e prontos para carro, TV, PC e festas. Acesso vitalício e atualizações mensais.",
+  alternates: { canonical: publicUrl },
+  icons: {
+    icon: `${publicUrl}logo-brazhits.png`,
+    shortcut: `${publicUrl}logo-brazhits.png`,
+    apple: `${publicUrl}logo-brazhits.png`,
+  },
+  openGraph: {
+    url: publicUrl,
+    title: "+500 Clipes Sertanejos em Full HD | BrazHits",
+    description: "Transforme qualquer tela em um show sertanejo. Acesso vitalício, download fácil e atualizações mensais.",
+    type: "website",
+    locale: "pt_BR",
+    images: [{ url: ogImage, width: 1736, height: 909, alt: "BrazHits — mais de 500 clipes sertanejos em Full HD" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "+500 Clipes Sertanejos em Full HD | BrazHits",
+    description: "Clipes em 1080p para carro, TV, PC e festas — mesmo sem internet.",
+    images: [ogImage],
+  },
+};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
