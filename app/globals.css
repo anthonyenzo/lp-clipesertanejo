@@ -61,7 +61,6 @@
 }
 /* Pricing card comparison and mobile readability. */
 .price-card .check-list li{font-size:12px;line-height:1.55}
-.price-card .check-list li.excluded{padding:9px 10px;border:1px solid rgba(255,77,85,.14);border-radius:10px;color:#aebcc4;background:rgba(255,77,85,.045)}
 .check-list li.excluded>span{position:relative;background:#ff4d55;box-shadow:0 0 12px rgba(255,77,85,.18)}
 .check-list li.excluded>span::before,.check-list li.excluded>span::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:2px;border-radius:2px;background:#fff}
 .check-list li.excluded>span::before{transform:translate(-50%,-50%) rotate(45deg)}
@@ -74,7 +73,23 @@
   .price-card .check-list{gap:15px;margin:26px 0;padding:24px 0}
   .price-card .check-list li{gap:11px;font-size:13px;line-height:1.55}
   .price-card .check-list li>span{width:24px;height:24px;font-size:12px}
-  .price-card .check-list li.excluded{padding:11px 12px}
   .price-old{font-size:12px}
   .payment-note{font-size:9px}
+}
+/* Mobile FAQ and testimonial readability. */
+@media(max-width:640px){
+  .comment-count{font-size:10px}
+  .testimonial{padding:24px}
+  .avatar{width:44px;height:44px;font-size:13px}
+  .testimonial-head strong{font-size:14px}
+  .testimonial-head div span{font-size:10px}
+  .testimonial-head time{font-size:10px}
+  .stars{font-size:13px}
+  .testimonial p{margin:12px 0 18px;font-size:13px;line-height:1.75}
+  .comment-actions{font-size:10px}
+  .faq-intro p{font-size:13px;line-height:1.75}
+  .whatsapp-link{font-size:11px}
+  summary{min-height:68px;padding:18px;font-size:13px;line-height:1.45}
+  summary span{width:31px;height:31px;font-size:17px}
+  details p{padding:0 18px 20px;font-size:13px;line-height:1.75}
 }
