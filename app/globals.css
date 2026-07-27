@@ -93,3 +93,39 @@
   summary span{width:31px;height:31px;font-size:17px}
   details p{padding:0 18px 20px;font-size:13px;line-height:1.75}
 }
+/* Complete mobile typography pass for comfortable reading. */
+@media(max-width:640px){
+  .promo-bar{gap:6px;padding-inline:10px;font-size:10px}
+  .header-trust{font-size:10px}
+  .hero-lead{font-size:15px;line-height:1.72}
+  .hero-points{font-size:11px}
+  .cta-large{font-size:12px}
+  .microcopy{font-size:10px;line-height:1.5}
+  .video-badge{font-size:10px}
+  .floating-one span{font-size:10px}
+  .floating-two strong{font-size:11px}
+  .device-item strong{font-size:10px}
+  .device-item span{font-size:12px}
+  .section-heading p{font-size:13px;line-height:1.72}
+  .problem-card h3{font-size:21px}
+  .problem-card p,.benefit-card p{font-size:14px;line-height:1.7}
+  .pack-quality,.mini-stat span{font-size:10px}
+  .receive-copy>p{font-size:14px;line-height:1.75}
+  .check-list li{font-size:13px;line-height:1.55}
+  .text-link{font-size:12px}
+  .album-card>strong{font-size:13px;line-height:1.4}
+  .album-card>span{font-size:11px;line-height:1.45}
+  .catalog-more{font-size:15px}
+  .recommended{font-size:10px}
+  .payment-note{font-size:10px}
+  .guarantee-copy p{font-size:14px;line-height:1.75}
+  .guarantee-seal small{font-size:10px}
+  .decision-card p{font-size:13px;line-height:1.7}
+  .decision-tag,.decision-card.positive a{font-size:11px}
+  .decision-note{font-size:13px;line-height:1.65}
+  .outline-button{font-size:11px}
+  .final-inner p{font-size:14px;line-height:1.75}
+  .footer-inner{font-size:11px;line-height:1.55}
+  .mobile-sticky-cta small{font-size:10px}
+  .mobile-sticky-cta b{font-size:11px}
+}
