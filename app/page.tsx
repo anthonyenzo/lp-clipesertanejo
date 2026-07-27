@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 
 const CHECKOUT_CLIPES = "https://www.ggcheckout.com/checkout/v5/z3cgSIXCqNHQ5mgq9edy";
 const CHECKOUT_COMPLETO = "https://www.ggcheckout.com/checkout/v5/iRllVEQ8RqbFberkjoCo";
-const WHATSAPP = "https://wa.me/5538988259140?text=Ol%C3%A1!%20Vim%20pelo%20suporte%20do%20Pack%20de%20Clipes";
+const WHATSAPP = "https://wa.me/5538984020274?text=Ol%C3%A1!%20Vim%20pelo%20suporte%20do%20Pack%20de%20Clipes";
 
 const BASE_PATH = process.env.NEXT_PUBLIC_DEPLOY_BASE_PATH ?? "";
 
