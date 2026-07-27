@@ -46,6 +46,9 @@
 .icon-clock::before,.icon-clock::after{content:"";position:absolute;left:50%;top:50%;border-radius:99px;background:currentColor;transform-origin:left center}
 .icon-clock::before{width:6px;height:2px;transform:translate(0,-1px) rotate(-42deg)}
 .icon-clock::after{width:2px;height:7px;transform:translate(-1px,-6px)}
+.icon-no-ads{position:relative;display:block;width:25px;height:18px;border:2px solid currentColor;border-radius:4px}
+.icon-no-ads::before{content:"AD";position:absolute;inset:0;display:grid;place-items:center;font-size:7px;font-weight:900;letter-spacing:.04em}
+.icon-no-ads::after{content:"";position:absolute;left:-4px;top:7px;width:30px;height:2px;border-radius:2px;background:currentColor;transform:rotate(-42deg);box-shadow:0 0 7px rgba(0,228,255,.35)}
 /* Mobile conversion refinements: emphasize the complete offer and improve readability. */
 .price-card.featured{scroll-margin-top:62px}
 @media(max-width:640px){
