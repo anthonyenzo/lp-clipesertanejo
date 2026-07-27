@@ -59,3 +59,22 @@
   .security-row strong{font-size:14px}
   .security-row small{font-size:11px}
 }
+/* Pricing card comparison and mobile readability. */
+.price-card .check-list li{font-size:12px;line-height:1.55}
+.price-card .check-list li.excluded{padding:9px 10px;border:1px solid rgba(255,77,85,.14);border-radius:10px;color:#aebcc4;background:rgba(255,77,85,.045)}
+.check-list li.excluded>span{position:relative;background:#ff4d55;box-shadow:0 0 12px rgba(255,77,85,.18)}
+.check-list li.excluded>span::before,.check-list li.excluded>span::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:2px;border-radius:2px;background:#fff}
+.check-list li.excluded>span::before{transform:translate(-50%,-50%) rotate(45deg)}
+.check-list li.excluded>span::after{transform:translate(-50%,-50%) rotate(-45deg)}
+@media(max-width:640px){
+  .price-card{padding:34px 26px}
+  .plan-label{font-size:10px}
+  .price-card h3{margin-top:11px;font-size:29px;line-height:1.12}
+  .plan-description{min-height:auto;margin-top:10px;font-size:13px;line-height:1.65}
+  .price-card .check-list{gap:15px;margin:26px 0;padding:24px 0}
+  .price-card .check-list li{gap:11px;font-size:13px;line-height:1.55}
+  .price-card .check-list li>span{width:24px;height:24px;font-size:12px}
+  .price-card .check-list li.excluded{padding:11px 12px}
+  .price-old{font-size:12px}
+  .payment-note{font-size:9px}
+}
