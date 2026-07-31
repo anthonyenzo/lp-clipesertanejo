@@ -50,7 +50,7 @@ jobs:
           current_file="${work_dir}/current.htaccess"
           updated_file="${work_dir}/updated.htaccess"
 
-          curl --silent --show-error --fail --ssl-reqd \
+          curl --silent --show-error --fail --ssl-reqd --insecure \
             --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
             "${remote_base}.htaccess" \
             --output "$current_file"
@@ -60,7 +60,7 @@ jobs:
             exit 0
           fi
 
-          curl --silent --show-error --fail --ssl-reqd \
+          curl --silent --show-error --fail --ssl-reqd --insecure \
             --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
             --upload-file "$current_file" \
             "${remote_base}.htaccess.brazhits-before-loja-redirect"
@@ -78,7 +78,7 @@ jobs:
             cat "$current_file"
           } > "$updated_file"
 
-          curl --silent --show-error --fail --ssl-reqd \
+          curl --silent --show-error --fail --ssl-reqd --insecure \
             --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
             --upload-file "$updated_file" \
             "${remote_base}.htaccess"
