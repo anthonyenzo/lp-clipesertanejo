@@ -1,0 +1,86 @@
+name: Redirecionar raiz para a loja
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/redirect-root.yml
+
+concurrency:
+  group: redirect-brazhits-root
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  configure-redirect:
+    name: Configurar redirecionamento no servidor
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: production
+
+    steps:
+      - name: Preservar WordPress e redirecionar somente a raiz
+        env:
+          FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          page_dir="${FTP_SERVER_DIR%/}"
+          if [[ "$page_dir" == */* ]]; then
+            root_dir="${page_dir%/*}"
+          else
+            root_dir=""
+          fi
+
+          root_dir="${root_dir#/}"
+          if [[ -n "$root_dir" ]]; then
+            root_dir="${root_dir%/}/"
+          fi
+
+          remote_base="ftp://${FTP_SERVER}:21/${root_dir}"
+          work_dir="$(mktemp -d)"
+          current_file="${work_dir}/current.htaccess"
+          updated_file="${work_dir}/updated.htaccess"
+
+          curl --silent --show-error --fail --ssl-reqd \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            "${remote_base}.htaccess" \
+            --output "$current_file"
+
+          if grep -Fq "# BEGIN BrazHits root redirect" "$current_file"; then
+            echo "O redirecionamento da raiz já está configurado."
+            exit 0
+          fi
+
+          curl --silent --show-error --fail --ssl-reqd \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            --upload-file "$current_file" \
+            "${remote_base}.htaccess.brazhits-before-loja-redirect"
+
+          {
+            printf '%s\n' \
+              '# BEGIN BrazHits root redirect' \
+              '<IfModule mod_rewrite.c>' \
+              'RewriteEngine On' \
+              'RewriteCond %{REQUEST_URI} ^/$' \
+              'RewriteRule ^$ /loja/ [R=302,L]' \
+              '</IfModule>' \
+              '# END BrazHits root redirect' \
+              ''
+            cat "$current_file"
+          } > "$updated_file"
+
+          curl --silent --show-error --fail --ssl-reqd \
+            --user "${FTP_USERNAME}:${FTP_PASSWORD}" \
+            --upload-file "$updated_file" \
+            "${remote_base}.htaccess"
+
+          echo "A raiz agora redireciona para /loja/ sem alterar as demais rotas."
