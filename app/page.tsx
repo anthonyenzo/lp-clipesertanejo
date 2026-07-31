@@ -8,6 +8,48 @@ const WHATSAPP = "https://wa.me/5538984020274?text=Ol%C3%A1!%20Vim%20pelo%20supo
 
 const BASE_PATH = process.env.NEXT_PUBLIC_DEPLOY_BASE_PATH ?? "";
 
+const otherPacks = [
+  {
+    id: "sertanejo-raiz",
+    name: "Sertanejo Raiz",
+    label: "Pack Sertanejo Raiz",
+    tone: "amber",
+    image: "pack-sertanejo-raiz-modao.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms3qwbhf02ey01q2uric6p6b?offer=ct9lej3",
+  },
+  {
+    id: "forro-arrocha",
+    name: "Forró / Arrocha",
+    label: "Pack Forró + Arrocha",
+    tone: "orange",
+    image: "pack-forro-arrocha-2026.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms50qbo101h701pxcrnwl7zn?offer=142tf5w",
+  },
+  {
+    id: "pagode",
+    name: "Pagode",
+    label: "Pack Pagode",
+    tone: "cyan",
+    image: "pack-pagode-2026.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms50tr7p01jg01pxv6hv8di0?offer=3wkrmwo",
+  },
+  {
+    id: "rock-nacional",
+    name: "Rock Nacional",
+    label: "Pack Rock Nacional",
+    tone: "violet",
+    image: "pack-rock-nacional.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms514n1801rx01ocfhh2ar5y?offer=d58z8ku",
+  },
+  {
+    id: "gospel",
+    name: "Gospel",
+    label: "Pack Gospel",
+    tone: "blue",
+    image: "pack-gospel-2026.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms50v6lf01kk01pxtf8e60hm?offer=064ob69",
+  },
+] as const;
 const albums = [
   { image: `${BASE_PATH}/album-gusttavo.png`, title: "Feito à Mão", artist: "Gusttavo Lima" },
   { image: `${BASE_PATH}/album-simone.png`, title: "Cantando Sua História", artist: "Simone Mendes" },
@@ -137,7 +179,47 @@ export default function Home() {
 
       <section className="section decision"><div className="shell"><Reveal><SectionTitle eyebrow="A escolha é sua" title={<>Agora você tem <span>dois caminhos.</span></>} /></Reveal><div className="decision-grid"><Reveal className="decision-card muted"><span className="decision-number">01</span><h3>Continuar como está</h3><p>Perder tempo em sites suspeitos, baixar arquivos de baixa qualidade e depender da internet sempre que quiser assistir.</p><div className="decision-tag">Mais trabalho, menos qualidade</div></Reveal><Reveal className="decision-card positive" delay={90}><span className="decision-number">02</span><h3>Ter tudo pronto agora</h3><p>Baixar mais de 500 clipes com segurança, organização e liberdade para curtir em alta qualidade onde quiser.</p><a href="#oferta-completa">Escolher este caminho <ArrowIcon /></a></Reveal></div><Reveal><p className="decision-note">Não tomar uma decisão também é uma decisão. <strong>Dê o play em uma experiência muito melhor.</strong></p></Reveal></div></section>
 
-      <section className="other-packs"><div className="shell other-packs-inner"><Reveal><div><span className="eyebrow">Quer outros ritmos?</span><h2>Encontre o Pack certo para o seu som.</h2></div></Reveal><Reveal delay={90}><a className="outline-button" href="https://brazhits.com.br/loja/" target="_blank" rel="noopener noreferrer">Conferir todos os Packs <ArrowIcon direction="up-right" /></a></Reveal></div></section>
+      <section className="other-packs">
+        <div className="shell other-packs-inner">
+          <Reveal className="other-packs-heading">
+            <span className="eyebrow">Quer outros ritmos?</span>
+            <h2>Encontre o Pack certo para o seu som.</h2>
+            <p>Deslize e conheça os outros gêneros disponíveis na BrazHits.</p>
+          </Reveal>
+
+          <Reveal className="genre-deck" delay={80}>
+            {otherPacks.map((pack, index) => (
+              <a
+                className={`genre-card genre-tone-${pack.tone}`}
+                href={pack.checkout}
+                aria-label={`Comprar ${pack.label}`}
+                key={pack.id}
+              >
+                <div className="genre-cover">
+                  <img
+                    src={`${BASE_PATH}/${pack.image}`}
+                    alt={`Capa do ${pack.label}`}
+                    width="1200"
+                    height="1200"
+                    loading={index < 2 ? "eager" : "lazy"}
+                  />
+                  <div className="genre-brand"><span>Braz</span><strong>Hits</strong></div>
+                  <div className="genre-bars" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+                  <div className="genre-copy"><strong>{pack.name}</strong></div>
+                  <span className="genre-action" aria-hidden="true"><ArrowIcon /></span>
+                </div>
+                <h3>{pack.label}</h3>
+              </a>
+            ))}
+          </Reveal>
+
+          <p className="deck-swipe-hint" aria-hidden="true"><span className="swipe-icon" /> Deslize para explorar</p>
+
+          <Reveal className="other-packs-cta" delay={150}>
+            <a className="outline-button" href="https://brazhits.com.br/loja/" target="_blank" rel="noopener noreferrer">Conferir todos os Packs <ArrowIcon direction="up-right" /></a>
+          </Reveal>
+        </div>
+      </section>
 
       <section className="section faq-section"><div className="shell faq-grid"><Reveal className="faq-intro"><span className="eyebrow">Dúvidas frequentes</span><h2>Ficou com alguma <span>dúvida?</span></h2><p>Confira as respostas mais comuns ou fale diretamente com o suporte da BrazHits.</p><a className="whatsapp-link" href={WHATSAPP} target="_blank" rel="noopener noreferrer"><span>●</span> Falar no WhatsApp</a></Reveal><div className="faq-list">{faqs.map((faq, index) => <Reveal delay={(index % 3) * 45} key={faq.q}><details><summary>{faq.q}<span>+</span></summary><p>{faq.a}</p></details></Reveal>)}</div></div></section>
 
