@@ -76,6 +76,41 @@
   .price-old{font-size:12px}
   .payment-note{font-size:9px}
 }
+
+/* Third offer: full BrazHits video catalog. */
+.pricing-grid{max-width:1180px;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.price-card{display:flex;min-width:0;flex-direction:column;padding:34px 30px}
+.price-card.featured{transform:none}
+.price-card .check-list{flex:1;min-height:0}
+.price-card.ultimate{border-color:rgba(0,228,255,.62);background:radial-gradient(circle at 82% 4%,rgba(21,245,0,.12),transparent 30%),linear-gradient(155deg,rgba(4,50,67,.94),rgba(0,16,28,.98));box-shadow:0 32px 90px rgba(0,0,0,.46),0 0 55px rgba(0,228,255,.09)}
+.price-card.ultimate .recommended{color:#001b1f;background:linear-gradient(100deg,var(--cyan),#58ff73)}
+.discount-chip{width:fit-content;margin:11px 0 2px;padding:6px 10px;border:1px solid rgba(21,245,0,.36);border-radius:99px;color:var(--green);background:rgba(21,245,0,.08);font-size:10px;font-weight:900;letter-spacing:.08em}
+.ultimate-highlight{display:flex;align-items:center;gap:13px;margin:18px 0 2px;padding:15px;border:1px solid rgba(0,228,255,.2);border-radius:15px;background:rgba(0,228,255,.055)}
+.ultimate-highlight strong{color:var(--green);font-size:32px;line-height:1;letter-spacing:-.05em}
+.ultimate-highlight span{color:#d4e6ed;font-size:11px;font-weight:700;line-height:1.45;text-transform:uppercase}
+.price-card.ultimate .check-list{margin-top:15px;margin-bottom:16px;padding-block:17px}
+.genre-pills{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 18px}
+.genre-pills span{padding:6px 8px;border:1px solid rgba(0,228,255,.18);border-radius:7px;color:#aec4ce;background:rgba(0,228,255,.035);font-size:9px;font-weight:650;line-height:1.25}
+.saving-line{width:fit-content;margin-bottom:9px;padding:7px 10px;border-radius:8px;color:#ccebd2;background:rgba(21,245,0,.08);font-size:10px}
+.saving-line strong{color:var(--green)}
+.price-card.ultimate .price-button{background:linear-gradient(100deg,var(--cyan),#55ff69);box-shadow:0 16px 40px rgba(0,228,255,.14)}
+
+@media(max-width:980px){
+  .pricing-grid{max-width:760px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .price-card.ultimate{grid-column:1/-1;width:min(100%,520px);justify-self:center}
+}
+@media(max-width:640px){
+  .pricing-grid{grid-template-columns:1fr;gap:30px}
+  .price-card.ultimate{grid-column:auto;width:100%;margin-top:18px}
+  .price-card.ultimate .recommended{max-width:calc(100% - 34px);text-align:center}
+  .discount-chip{margin-top:14px;font-size:11px}
+  .ultimate-highlight{gap:15px;margin-top:20px;padding:17px}
+  .ultimate-highlight strong{font-size:38px}
+  .ultimate-highlight span{font-size:12px}
+  .genre-pills{gap:7px;margin-bottom:20px}
+  .genre-pills span{padding:7px 9px;font-size:11px}
+  .saving-line{padding:8px 11px;font-size:12px}
+}
 /* Mobile FAQ and testimonial readability. */
 @media(max-width:640px){
   .comment-count{font-size:10px}
