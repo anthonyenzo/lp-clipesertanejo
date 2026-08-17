@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type ReactNode } from "react";
 
 const CHECKOUT_CLIPES = "https://checkout.brazhits.com.br/checkout/cms3nyhqu00q101ojp5uriham?offer=7JM1ZJ5";
 const CHECKOUT_COMPLETO = "https://checkout.brazhits.com.br/checkout/cms52ikdc02i901px1sn02df1?offer=hmf38kc";
 const CHECKOUT_TODOS_CLIPES = "https://checkout.brazhits.com.br/checkout/cmsrukfkk00sw01pw02ag439i?offer=osiy9l6";
+const CHECKOUT_TODOS_CLIPES_ESPECIAL = "https://checkout.brazhits.com.br/checkout/cmsrukfkk00sw01pw02ag439i?offer=HVPM5W8";
 const WHATSAPP = "https://wa.me/5538984020274?text=Ol%C3%A1!%20Vim%20pelo%20suporte%20do%20Pack%20de%20Clipes";
 
 const BASE_PATH = process.env.NEXT_PUBLIC_DEPLOY_BASE_PATH ?? "";
@@ -133,12 +134,57 @@ function NoAdsIcon() {
 
 export default function Home() {
   const [currentDate, setCurrentDate] = useState("--/--/----");
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
+  const upgradeDialogRef = useRef<HTMLDivElement>(null);
+  const upgradeTriggerRef = useRef<HTMLAnchorElement>(null);
   useEffect(() => {
     document.documentElement.classList.add("motion-ready");
     const today = new Date();
     setCurrentDate(`${String(today.getDate()).padStart(2, "0")}/${String(today.getMonth() + 1).padStart(2, "0")}/${today.getFullYear()}`);
     return () => document.documentElement.classList.remove("motion-ready");
   }, []);
+
+  useEffect(() => {
+    if (!upgradeOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    upgradeDialogRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setUpgradeOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab" || !upgradeDialogRef.current) return;
+      const focusable = Array.from(
+        upgradeDialogRef.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      upgradeTriggerRef.current?.focus();
+    };
+  }, [upgradeOpen]);
+
+  function openUpgrade(event: ReactMouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    setUpgradeOpen(true);
+  }
 
   return (
     <main>
@@ -173,7 +219,7 @@ export default function Home() {
 
       <section className="section pricing" id="super-oferta"><div className="shell"><Reveal><SectionTitle eyebrow="Escolha sua oferta" title={<>Um pagamento. <span>Seu som completo, sem mensalidade.</span></>} text="Acesso imediato e vitalício. Escolha a opção que combina com você." /></Reveal><div className="pricing-grid">
         <Reveal className="price-card"><div className="plan-label">PACK ESSENCIAL</div><h3>Clipes Sertanejos</h3><p className="plan-description">Para quem quer transformar qualquer tela com os maiores hits.</p><ul className="check-list"><CheckItem>+500 clipes em MP4 Full HD</CheckItem><CheckItem>Acesso vitalício</CheckItem><CheckItem>Atualizações mensais</CheckItem><CheckItem>Garantia de 15 dias</CheckItem><CheckItem excluded>Grupo VIP no WhatsApp (para ficar por dentro das atualizações mensais e novos packs)</CheckItem><CheckItem excluded>+1.000 Músicas em MP3 (Sertanejo Universitário, Modão e Forró)</CheckItem></ul><div className="price-old">De <s>R$ 49,90</s> por apenas</div><div className="price"><span>R$</span><strong>18</strong><sup>,90</sup></div><a className="cta price-button" href={CHECKOUT_CLIPES} target="_blank" rel="noopener noreferrer">Comprar agora <ArrowIcon /></a><div className="payment-note">PIX ou cartão • acesso imediato</div></Reveal>
-        <Reveal className="price-card featured" delay={100}><div className="recommended">MAIS ESCOLHIDO</div><div className="plan-label">SUPER OFERTA</div><h3>Clipes + Músicas</h3><p className="plan-description">O pacote completo para quem quer vídeo e uma biblioteca extra de áudio.</p><ul className="check-list"><CheckItem><strong>+500 clipes em MP4 Full HD</strong></CheckItem><CheckItem><strong>+1.000 Músicas em MP3 (Sertanejo Universitário, Modão e Forró)</strong></CheckItem><CheckItem>Acesso vitalício + bônus</CheckItem><CheckItem>Grupo VIP no WhatsApp (para ficar por dentro das atualizações mensais e novos packs)</CheckItem><CheckItem>Garantia de 15 dias</CheckItem></ul><div className="price-old">De <s>R$ 77,90</s> por apenas</div><div className="price"><span>R$</span><strong>26</strong><sup>,90</sup></div><a className="cta price-button" href={CHECKOUT_COMPLETO} target="_blank" rel="noopener noreferrer">Quero a oferta completa <ArrowIcon /></a><div className="payment-note">PIX ou cartão • acesso imediato</div></Reveal>
+        <Reveal className="price-card featured" delay={100}><div className="recommended">MAIS ESCOLHIDO</div><div className="plan-label">SUPER OFERTA</div><h3>Clipes + Músicas</h3><p className="plan-description">O pacote completo para quem quer vídeo e uma biblioteca extra de áudio.</p><ul className="check-list"><CheckItem><strong>+500 clipes em MP4 Full HD</strong></CheckItem><CheckItem><strong>+1.000 Músicas em MP3 (Sertanejo Universitário, Modão e Forró)</strong></CheckItem><CheckItem>Acesso vitalício + bônus</CheckItem><CheckItem>Grupo VIP no WhatsApp (para ficar por dentro das atualizações mensais e novos packs)</CheckItem><CheckItem>Garantia de 15 dias</CheckItem></ul><div className="price-old">De <s>R$ 77,90</s> por apenas</div><div className="price"><span>R$</span><strong>26</strong><sup>,90</sup></div><a ref={upgradeTriggerRef} className="cta price-button" href={CHECKOUT_COMPLETO} onClick={openUpgrade} aria-haspopup="dialog">Quero a oferta completa <ArrowIcon /></a><div className="payment-note">PIX ou cartão • acesso imediato</div></Reveal>
         <Reveal id="oferta-completa" className="price-card ultimate" delay={200}><div className="recommended">MELHOR CUSTO-BENEFÍCIO</div><div className="discount-chip">39% OFF</div><div className="plan-label">PACK TOTAL BRAZHITS</div><h3>Todos os Clipes</h3><p className="plan-description">O maior acervo da BrazHits: todos os gêneros reunidos em uma única compra.</p><div className="ultimate-highlight"><strong>+1.700</strong><span>clipes em MP4<br />Full HD 1080p</span></div><ul className="check-list"><CheckItem><strong>Todos os packs disponíveis da loja</strong></CheckItem><CheckItem>Organizados em pastas por gênero</CheckItem><CheckItem>Acesso vitalício</CheckItem><CheckItem>Garantia de 15 dias</CheckItem></ul><div className="genre-pills" aria-label="Gêneros incluídos"><span>Sertanejo 2026</span><span>Sertanejo Raiz</span><span>Pagode 2026</span><span>Forró e Arrocha</span><span>Gospel 2026</span><span>Rock Nacional</span><span>MPB Antigo</span></div><div className="saving-line">Você economiza <strong>R$ 43</strong></div><div className="price-old">Separados sairiam por <s>R$ 110,00</s></div><div className="price"><span>R$</span><strong>67</strong><sup>,00</sup></div><a className="cta price-button" href={CHECKOUT_TODOS_CLIPES} target="_blank" rel="noopener noreferrer">Quero todos os clipes <ArrowIcon /></a><div className="payment-note">PIX ou cartão • acesso imediato</div></Reveal>
       </div><Reveal className="security-row"><span><i>✓</i><strong>Compra segura</strong><small>Ambiente protegido</small></span><span><i>↯</i><strong>Acesso imediato</strong><small>Após a confirmação</small></span><span><i>15</i><strong>Garantia</strong><small>15 dias para testar</small></span></Reveal></div></section>
 
@@ -227,6 +273,39 @@ export default function Home() {
 
       <section className="final-cta"><div className="final-glow" /><div className="shell final-inner"><Reveal><span className="eyebrow">Dê o play na sua experiência</span><h2>Mais de 500 clipes.<br /><span>Um clique de distância.</span></h2><p>Aproveite a oferta de hoje e receba seu acesso imediatamente após a confirmação.</p><a className="cta cta-large" href="#oferta-completa">Garantir meu Pack agora <ArrowIcon /></a></Reveal></div></section>
       <footer><div className="shell footer-inner"><a className="brand footer-brand" href="#top"><span>Braz<span>Hits</span></span></a><p>© {new Date().getFullYear()} BrazHits — Todos os direitos reservados.</p><a href={WHATSAPP} target="_blank" rel="noopener noreferrer">Suporte</a></div></footer>
+
+      {upgradeOpen && (
+        <div className="upgrade-modal" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setUpgradeOpen(false); }}>
+          <div ref={upgradeDialogRef} className="upgrade-dialog" role="dialog" aria-modal="true" aria-labelledby="upgrade-title" aria-describedby="upgrade-description" tabIndex={-1}>
+            <button className="upgrade-close" type="button" onClick={() => setUpgradeOpen(false)} aria-label="Fechar oferta especial">×</button>
+            <div className="upgrade-badge"><span aria-hidden="true" /> OFERTA ESPECIAL LIBERADA</div>
+            <p className="upgrade-kicker">Antes de finalizar sua compra...</p>
+            <h2 id="upgrade-title">Leve <span>todos os Packs de Clipes</span> por apenas R$ 57</h2>
+            <p id="upgrade-description" className="upgrade-description">Você desbloqueou uma condição exclusiva para trocar sua escolha pelo maior acervo da BrazHits.</p>
+
+            <div className="upgrade-highlight">
+              <div><strong>+1.700</strong><span>clipes em MP4<br />Full HD 1080p</span></div>
+              <ul>
+                <li><span>✓</span> Todos os 7 packs da loja</li>
+                <li><span>✓</span> Organizados por gênero</li>
+                <li><span>✓</span> Acesso vitalício</li>
+              </ul>
+            </div>
+
+            <div className="upgrade-genres" aria-label="Gêneros incluídos"><span>Sertanejo</span><span>Modão</span><span>Forró</span><span>Pagode</span><span>Gospel</span><span>Rock</span><span>MPB</span></div>
+
+            <div className="upgrade-offer-row">
+              <div className="upgrade-scarcity"><strong>Condição exclusiva desta etapa</strong><span>Fora desta condição, o Pack Total custa R$ 67.</span></div>
+              <div className="upgrade-price"><small>De <s>R$ 67,00</s> por</small><strong><span>R$</span> 57<sup>,00</sup></strong><em>Economize mais R$ 10</em></div>
+            </div>
+
+            <a className="cta upgrade-accept" href={CHECKOUT_TODOS_CLIPES_ESPECIAL} target="_blank" rel="noopener noreferrer" onClick={() => setUpgradeOpen(false)}>Sim, quero +1.700 clipes por R$ 57 <ArrowIcon /></a>
+            <a className="upgrade-decline" href={CHECKOUT_COMPLETO} target="_blank" rel="noopener noreferrer" onClick={() => setUpgradeOpen(false)}>Não, continuar com Clipes + Músicas por R$ 26,90</a>
+            <p className="upgrade-microcopy">Pagamento único • Acesso imediato • 15 dias de garantia</p>
+          </div>
+        </div>
+      )}
+
       <a className="mobile-sticky-cta" href="#oferta-completa"><span><small>Pack Total • 39% OFF</small><strong>R$ 67,00</strong></span><b>VER OFERTA <ArrowIcon /></b></a>
     </main>
   );

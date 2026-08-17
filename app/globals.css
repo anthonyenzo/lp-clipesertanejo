@@ -217,3 +217,69 @@
   .other-packs .outline-button{width:100%;justify-content:space-between;font-size:12px}
 }
 @keyframes deckHint{0%,100%{transform:translateX(0);opacity:.7}50%{transform:translateX(7px);opacity:1}}
+
+/* Upgrade exclusivo após a seleção da oferta de R$ 26,90 */
+.upgrade-modal{position:fixed;z-index:2500;inset:0;display:grid;place-items:center;padding:20px;overflow-y:auto;background:rgba(0,8,14,.88);backdrop-filter:blur(14px);animation:upgrade-fade .22s ease both}
+.upgrade-dialog{position:relative;width:min(100%,720px);max-height:calc(100dvh - 40px);padding:34px;overflow-y:auto;border:1px solid rgba(21,245,0,.48);border-radius:26px;outline:none;background:radial-gradient(circle at 88% 6%,rgba(21,245,0,.12),transparent 28%),radial-gradient(circle at 5% 95%,rgba(0,228,255,.11),transparent 32%),linear-gradient(155deg,#052d3d,#00131f 64%);box-shadow:0 34px 100px rgba(0,0,0,.72),0 0 60px rgba(21,245,0,.07);animation:upgrade-rise .34s cubic-bezier(.2,.75,.2,1) both}
+.upgrade-close{position:absolute;z-index:2;top:15px;right:15px;width:40px;height:40px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.14);border-radius:50%;background:rgba(0,13,23,.72);color:#b9cbd3;cursor:pointer;font:400 26px/1 Arial,sans-serif;transition:.2s}
+.upgrade-close:hover,.upgrade-close:focus-visible{border-color:var(--cyan);color:#fff;outline:none;transform:rotate(5deg)}
+.upgrade-badge{width:fit-content;display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(21,245,0,.22);border-radius:99px;color:var(--green);background:rgba(21,245,0,.08);font-size:11px;font-weight:900;letter-spacing:.11em}
+.upgrade-badge span{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 13px var(--green);animation:upgrade-pulse 1.5s ease-in-out infinite}
+.upgrade-kicker{margin:22px 0 7px;color:#91a9b4;font-size:14px;font-weight:700}
+.upgrade-dialog h2{max-width:620px;margin:0;padding-right:25px;font-size:clamp(31px,5vw,48px);line-height:1.05;letter-spacing:-.045em}
+.upgrade-dialog h2 span{color:var(--cyan)}
+.upgrade-description{max-width:610px;margin:14px 0 22px;color:#a3b7c0;font-size:15px;line-height:1.65}
+.upgrade-highlight{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px;align-items:center;padding:19px 21px;border:1px solid rgba(0,228,255,.23);border-radius:18px;background:rgba(0,24,37,.68)}
+.upgrade-highlight>div{display:flex;align-items:center;gap:13px}
+.upgrade-highlight>div strong{color:var(--green);font-size:43px;line-height:1;letter-spacing:-.05em}
+.upgrade-highlight>div>span{color:#d9e7ec;font-size:13px;font-weight:800;line-height:1.45;text-transform:uppercase}
+.upgrade-highlight ul{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.upgrade-highlight li{display:flex;align-items:center;gap:9px;color:#d2e0e6;font-size:14px;font-weight:600}
+.upgrade-highlight li span{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;color:#00210a;background:var(--green);font-size:11px;font-weight:900}
+.upgrade-genres{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.upgrade-genres span{padding:6px 9px;border:1px solid rgba(0,228,255,.19);border-radius:7px;color:#9fc4d0;background:rgba(0,228,255,.035);font-size:11px;font-weight:750}
+.upgrade-offer-row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin:20px 0}
+.upgrade-scarcity{display:flex;flex-direction:column;padding-left:14px;border-left:3px solid var(--green)}
+.upgrade-scarcity strong{color:#fff;font-size:15px}
+.upgrade-scarcity span{margin-top:4px;color:#93aab4;font-size:13px;line-height:1.5}
+.upgrade-price{min-width:190px;text-align:right}
+.upgrade-price small{display:block;color:#8399a4;font-size:12px}
+.upgrade-price>strong{display:block;color:#fff;font-size:48px;line-height:1;letter-spacing:-.06em}
+.upgrade-price>strong span{color:#9fb4bd;font-size:16px}
+.upgrade-price sup{color:var(--cyan);font-size:19px}
+.upgrade-price em{display:block;margin-top:4px;color:var(--green);font-size:12px;font-style:normal;font-weight:800}
+.upgrade-accept{width:100%;min-height:60px;display:flex;justify-content:center;gap:13px;font-size:14px;text-align:center}
+.upgrade-decline{min-height:44px;display:flex;align-items:center;justify-content:center;margin-top:7px;color:#93a7b0;font-size:12px;text-align:center;text-decoration:underline;text-underline-offset:3px}
+.upgrade-decline:hover,.upgrade-decline:focus-visible{color:#fff}
+.upgrade-microcopy{margin:2px 0 0;color:#617a86;font-size:10px;text-align:center;text-transform:uppercase}
+.upgrade-dialog::-webkit-scrollbar{width:6px}.upgrade-dialog::-webkit-scrollbar-thumb{border-radius:99px;background:rgba(0,228,255,.28)}
+@keyframes upgrade-fade{from{opacity:0}to{opacity:1}}
+@keyframes upgrade-rise{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes upgrade-pulse{50%{opacity:.45;transform:scale(.82)}}
+@media(max-width:640px){
+  .upgrade-modal{place-items:end center;padding:0;background:rgba(0,8,14,.84)}
+  .upgrade-dialog{width:100%;max-height:94dvh;padding:28px 20px calc(22px + env(safe-area-inset-bottom));border-width:1px 0 0;border-radius:24px 24px 0 0}
+  .upgrade-close{top:12px;right:13px;width:38px;height:38px}
+  .upgrade-badge{padding:7px 10px;font-size:10px}
+  .upgrade-kicker{margin-top:18px;font-size:14px}
+  .upgrade-dialog h2{padding-right:8px;font-size:clamp(30px,9vw,39px)}
+  .upgrade-description{margin-top:12px;font-size:14px;line-height:1.6}
+  .upgrade-highlight{grid-template-columns:1fr;gap:15px;padding:17px}
+  .upgrade-highlight>div strong{font-size:40px}
+  .upgrade-highlight>div>span{font-size:13px}
+  .upgrade-highlight ul{grid-template-columns:1fr;gap:7px}
+  .upgrade-highlight li{font-size:14px}
+  .upgrade-genres{gap:6px;margin-top:10px}
+  .upgrade-genres span{font-size:11px}
+  .upgrade-offer-row{grid-template-columns:1fr auto;gap:12px;margin:18px 0}
+  .upgrade-scarcity strong{font-size:14px}
+  .upgrade-scarcity span{font-size:12px}
+  .upgrade-price{min-width:128px}
+  .upgrade-price>strong{font-size:42px}
+  .upgrade-price>strong span{font-size:14px}
+  .upgrade-accept{min-height:62px;padding-inline:14px;font-size:14px;line-height:1.35}
+  .upgrade-decline{min-height:50px;padding-inline:10px;font-size:12px;line-height:1.45}
+  .upgrade-microcopy{font-size:10px}
+}
+@media(max-width:380px){.upgrade-dialog{padding-inline:16px}.upgrade-dialog h2{font-size:29px}.upgrade-description{font-size:14px}.upgrade-highlight>div strong{font-size:36px}.upgrade-highlight li{font-size:13px}.upgrade-offer-row{align-items:end}.upgrade-scarcity span{max-width:145px}.upgrade-price>strong{font-size:38px}}
+@media(prefers-reduced-motion:reduce){.upgrade-modal,.upgrade-dialog,.upgrade-badge span{animation:none}}
