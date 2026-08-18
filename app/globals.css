@@ -283,3 +283,12 @@
 }
 @media(max-width:380px){.upgrade-dialog{padding-inline:16px}.upgrade-dialog h2{font-size:29px}.upgrade-description{font-size:14px}.upgrade-highlight>div strong{font-size:36px}.upgrade-highlight li{font-size:13px}.upgrade-offer-row{align-items:end}.upgrade-scarcity span{max-width:145px}.upgrade-price>strong{font-size:38px}}
 @media(prefers-reduced-motion:reduce){.upgrade-modal,.upgrade-dialog,.upgrade-badge span{animation:none}}
+
+/* Discreet catalog shortcut in the hero for visitors looking for other genres. */
+.hero-store-link{display:flex;align-items:center;gap:7px;width:fit-content;margin-top:15px;color:#9db0bc;font-size:11px;line-height:1.45;transition:color .2s,transform .2s}
+.hero-store-link strong{color:var(--cyan);font-weight:700}
+.hero-store-link .ui-arrow{flex:0 0 auto;transform:scale(.78)}
+.hero-store-link:hover{color:#d8faff;transform:translateX(2px)}
+.hero-store-link:hover strong{color:#65efff}
+@media(max-width:900px){.hero-store-link{margin-inline:auto}}
+@media(max-width:640px){.hero-store-link{margin-top:17px;font-size:12px;line-height:1.5}}
