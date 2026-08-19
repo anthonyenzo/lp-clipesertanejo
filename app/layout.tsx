@@ -8,8 +8,8 @@ const metaPixelScript = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=functi
 
 export const metadata: Metadata = {
   metadataBase: new URL(publicUrl),
-  title: "Pack de Clipes Sertanejos Full HD | BrazHits",
-  description: "+500 clipes sertanejos em Full HD, organizados e prontos para carro, TV, PC e festas. Acesso vitalício e atualizações mensais.",
+  title: "Super Pack +2.000 Clipes Full HD | BrazHits",
+  description: "Mais de 2.000 clipes em Full HD, organizados por gênero e prontos para carro, TV, PC e festas. Acesso vitalício e atualizações mensais.",
   alternates: { canonical: publicUrl },
   icons: {
     icon: `${publicUrl}logo-brazhits.png`,
@@ -18,16 +18,16 @@ export const metadata: Metadata = {
   },
   openGraph: {
     url: publicUrl,
-    title: "+500 Clipes Sertanejos em Full HD | BrazHits",
-    description: "Transforme qualquer tela em um show sertanejo. Acesso vitalício, download fácil e atualizações mensais.",
+    title: "+2.000 Clipes em Full HD | BrazHits",
+    description: "Todos os ritmos e muita qualidade para sua multimídia. Acesso vitalício e atualizações mensais.",
     type: "website",
     locale: "pt_BR",
-    images: [{ url: ogImage, width: 1736, height: 909, alt: "BrazHits — mais de 500 clipes sertanejos em Full HD" }],
+    images: [{ url: ogImage, width: 1736, height: 909, alt: "BrazHits — mais de 2.000 clipes em Full HD" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "+500 Clipes Sertanejos em Full HD | BrazHits",
-    description: "Clipes em 1080p para carro, TV, PC e festas — mesmo sem internet.",
+    title: "+2.000 Clipes em Full HD | BrazHits",
+    description: "Clipes em 1080p organizados por gênero para carro, TV, PC e festas — mesmo sem internet.",
     images: [ogImage],
   },
 };
