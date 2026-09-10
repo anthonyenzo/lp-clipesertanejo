@@ -28,6 +28,49 @@ const heroCustomerAvatars: MarqueeHeroImage[] = [
   { src: `${BASE_PATH}/customer-avatars/cliente-4.jpg`, alt: "Cliente da BrazHits" },
 ];
 
+const individualPacks = [
+  {
+    id: "sertanejo-raiz",
+    name: "Sertanejo Raiz",
+    label: "Pack Sertanejo Raiz",
+    tone: "amber",
+    image: "pack-sertanejo-raiz-modao.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms3qwbhf02ey01q2uric6p6b?offer=ct9lej3",
+  },
+  {
+    id: "forro-arrocha",
+    name: "Forró / Arrocha",
+    label: "Pack Forró + Arrocha",
+    tone: "orange",
+    image: "pack-forro-arrocha-2026.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms50qbo101h701pxcrnwl7zn?offer=142tf5w",
+  },
+  {
+    id: "pagode",
+    name: "Pagode",
+    label: "Pack Pagode",
+    tone: "cyan",
+    image: "pack-pagode-2026.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms50tr7p01jg01pxv6hv8di0?offer=3wkrmwo",
+  },
+  {
+    id: "rock-nacional",
+    name: "Rock Nacional",
+    label: "Pack Rock Nacional",
+    tone: "violet",
+    image: "pack-rock-nacional.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms514n1801rx01ocfhh2ar5y?offer=d58z8ku",
+  },
+  {
+    id: "gospel",
+    name: "Gospel",
+    label: "Pack Gospel",
+    tone: "blue",
+    image: "pack-gospel-2026.jpg",
+    checkout: "https://checkout.brazhits.com.br/checkout/cms50v6lf01kk01pxtf8e60hm?offer=064ob69",
+  },
+] as const;
+
 const testimonials = [
   { name: "Carlos Eduardo", photo: `${BASE_PATH}/testimonial-clients/carlos-eduardo.jpg`, message: "A qualidade ficou excelente na multimídia. Veio tudo muito bem organizado!", product: "Pack Completo — Todos os Clipes", productDetails: "+2.000 clipes · 8 gêneros · Full HD 1080p" },
   { name: "Marcio Xavier", photo: `${BASE_PATH}/testimonial-clients/marcio-xavier.jpg`, message: "Baixei as pastas e já consegui reproduzir. Muito mais prático do que procurar um por um.", product: "Pack Completo — Todos os Clipes", productDetails: "+2.000 clipes · 8 gêneros · Full HD 1080p" },
@@ -202,8 +245,49 @@ export default function BrazHitsPrincipal() {
               <li><Check /> +500 clipes sertanejos 1080p</li><li><Check /> +1.000 músicas em MP3</li><li><Check /> Sertanejo, modão e forró</li><li><Check /> Acesso vitalício</li><li><Check /> Grupo VIP no WhatsApp</li><li><Check /> 15 dias de garantia</li>
             </ul>
             <div className="price"><span className="price-copy">Pagamento único<small>De <s>R$ 77,90</s> por apenas</small></span><strong><sup>R$</sup> 26<small>,90</small></strong></div>
-            <button className="offer-button secondary" type="button" onClick={() => setShowDownsell(true)}>Quero clipes + músicas <Arrow /></button>
+            <button className="offer-button secondary" type="button" onClick={() => setShowDownsell(true)}>Quero o Pack Sertanejo completo <Arrow /></button>
           </article>
+        </div>
+      </section>
+
+      <section className="individual-packs section-reveal" aria-labelledby="individual-packs-title">
+        <div className="individual-packs-inner">
+          <div className="individual-packs-heading">
+            <h2 id="individual-packs-title">Deseja adquirir seu pack separadamente?</h2>
+            <p>Navegue por todos os gêneros disponíveis na loja (em MP4 e MP3)</p>
+          </div>
+
+          <div className="individual-pack-deck" aria-label="Packs individuais disponíveis">
+            {individualPacks.map((pack, index) => (
+              <a
+                className={`individual-pack-card individual-pack-tone-${pack.tone}`}
+                href={pack.checkout}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Comprar ${pack.label}`}
+                key={pack.id}
+              >
+                <div className="individual-pack-cover">
+                  <img
+                    src={`${BASE_PATH}/${pack.image}`}
+                    alt={`Capa do ${pack.label}`}
+                    width="1200"
+                    height="1200"
+                    loading={index < 2 ? "eager" : "lazy"}
+                    decoding="async"
+                  />
+                  <div className="individual-pack-brand"><span>Braz</span><strong>Hits</strong></div>
+                  <div className="individual-pack-bars" aria-hidden="true"><i /><i /><i /><i /><i /></div>
+                  <strong className="individual-pack-name">{pack.name}</strong>
+                  <span className="individual-pack-action" aria-hidden="true"><Arrow /></span>
+                </div>
+                <h3>{pack.label}</h3>
+              </a>
+            ))}
+          </div>
+
+          <p className="individual-pack-swipe" aria-hidden="true"><span /> Deslize para explorar</p>
+          <a className="individual-packs-button" href="https://brazhits.com.br/loja/" target="_blank" rel="noopener noreferrer">Conferir todos os packs <Arrow /></a>
         </div>
       </section>
 
