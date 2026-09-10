@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatedMarqueeHero, type MarqueeHeroImage } from "@/components/ui/hero-3";
+import { FAQS } from "@/lib/site";
 
 const CHECKOUT_COMPLETE = "https://checkout.wiven.com.br/checkout/cmsrukfkk00sw01pw02ag439i?offer=osiy9l6";
 const CHECKOUT_DOWNSELL_COMPLETE = "https://checkout.wiven.com.br/checkout/cmsrukfkk00sw01pw02ag439i?offer=HVPM5W8";
@@ -32,14 +33,6 @@ const testimonials = [
   { name: "Marcio Xavier", photo: `${BASE_PATH}/testimonial-clients/marcio-xavier.jpg`, message: "Baixei as pastas e já consegui reproduzir. Muito mais prático do que procurar um por um.", product: "Pack Completo — Todos os Clipes", productDetails: "+2.000 clipes · 8 gêneros · Full HD 1080p" },
   { name: "Leo DJ", photo: `${BASE_PATH}/testimonial-clients/leo-dj.jpg`, message: "Gostei demais da variedade. Agora tenho música para qualquer momento.", product: "Pack Completo — Todos os Clipes", productDetails: "+2.000 clipes · 8 gêneros · Full HD 1080p" },
   { name: "Junior", photo: `${BASE_PATH}/testimonial-clients/junior.jpg`, message: "O grupo de atualizações fez toda diferença. Recomendo a BrazHits!", product: "Sertanejo Completo — Clipes + Músicas", productDetails: "+500 clipes · +1.000 músicas · acesso vitalício" },
-] as const;
-
-const faqs = [
-  ["Como recebo meu Pack?", "Assim que o pagamento for confirmado, as instruções de acesso serão enviadas para o seu e-mail."],
-  ["Os arquivos funcionam sem internet?", "Sim. Você precisa de internet somente para baixar. Depois disso, pode reproduzir os arquivos salvos sem conexão."],
-  ["Funciona na multimídia do meu carro?", "Os clipes são entregues em MP4 Full HD 1080p, formato amplamente compatível com centrais multimídia, TVs, computadores e telões."],
-  ["Existe mensalidade?", "Não. O pagamento é único, com acesso vitalício ao conteúdo adquirido."],
-  ["Como funcionam as atualizações?", "Clientes das ofertas que incluem o Grupo VIP recebem avisos sobre atualizações mensais e novos Packs pelo WhatsApp."],
 ] as const;
 
 function Arrow() {
@@ -152,7 +145,7 @@ export default function BrazHitsPrincipal() {
           {testimonials.map((item) => (
             <article className="glass-card testimonial-card" key={item.name}>
               <div className="whatsapp-placeholder">
-                <div className="whatsapp-top"><img className="testimonial-avatar" src={item.photo} alt={`Foto de ${item.name}`} loading="lazy" decoding="async" /><strong>{item.name}</strong><i>•••</i></div>
+                <div className="whatsapp-top"><img className="testimonial-avatar" src={item.photo} alt={`Foto de ${item.name}`} width="40" height="40" loading="lazy" decoding="async" /><strong>{item.name}</strong><i>•••</i></div>
                 <div className="chat-bubble">{item.message}</div>
                 <div className="purchased-pack">
                   <span className="purchased-pack-label"><i aria-hidden="true" /> Produto adquirido</span>
@@ -246,7 +239,7 @@ export default function BrazHitsPrincipal() {
       <section className="section trust section-reveal" id="sobre">
         <div className="trust-card">
           <div className="trust-copy"><span className="section-kicker">QUEM ESTÁ POR TRÁS</span><h2>Prazer, eu sou o<br /><em>Edu.</em></h2><p>Eu também já perdi horas tentando montar uma coleção para a multimídia: sites cheios de propaganda e botões enganosos, risco de vírus, vídeos com qualidade baixa e aquela tarefa cansativa de baixar tudo um por um.</p><p>Foi para resolver isso que criei a BrazHits. Hoje eu seleciono, organizo e atualizo os Packs para você receber tudo pronto, baixar com tranquilidade e dar o play sem perder tempo.</p><div className="trust-stats"><span><strong>+2.000</strong>clipes disponíveis</span><span><strong>1080p</strong>qualidade Full HD</span><span><strong>Vitalício</strong>acesso ao conteúdo</span></div></div>
-          <div className="trust-visual glass-card"><div className="trust-logo"><span>Braz</span>Hits</div><p>Conteúdo selecionado e organizado por quem entende de multimídia.</p><figure className="trust-founder-media"><img src={`${BASE_PATH}/edu-fundador-brazhits.jpg`} alt="Edu, fundador da BrazHits, mostrando como transferir os Packs para a multimídia" loading="lazy" decoding="async" /></figure></div>
+          <div className="trust-visual glass-card"><div className="trust-logo"><span>Braz</span>Hits</div><p>Conteúdo selecionado e organizado por quem entende de multimídia.</p><figure className="trust-founder-media"><img src={`${BASE_PATH}/edu-fundador-brazhits.jpg`} alt="Edu, fundador da BrazHits, mostrando como transferir os Packs para a multimídia" width="1200" height="900" loading="lazy" decoding="async" /></figure></div>
         </div>
       </section>
 
@@ -254,7 +247,7 @@ export default function BrazHitsPrincipal() {
         <div className="faq-grid">
           <div className="faq-intro"><span className="section-kicker">DÚVIDAS FREQUENTES</span><h2>Antes de dar o play,<br /><em>confira aqui.</em></h2><p>Se sua dúvida não estiver na lista, nossa equipe está disponível no WhatsApp.</p><a className="support-button" href={WHATSAPP} target="_blank" rel="noopener noreferrer"><span className="support-symbol" aria-hidden="true" /> Falar com o suporte</a></div>
           <div className="faq-list">
-            {faqs.map(([question, answer]) => <details className="glass-card" key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}
+            {FAQS.map(([question, answer]) => <details className="glass-card" key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}
           </div>
         </div>
       </section>

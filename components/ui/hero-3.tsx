@@ -51,7 +51,7 @@ export function AnimatedMarqueeHero({
             {customerAvatars.map((avatar, index) => (
               <Avatar className="hero-customer-avatar" key={avatar.src}>
                 <AvatarFallback>C{index + 1}</AvatarFallback>
-                <AvatarImage src={avatar.src} alt="" loading="eager" decoding="async" />
+                <AvatarImage src={avatar.src} alt="" width="56" height="56" loading="eager" decoding="async" />
               </Avatar>
             ))}
           </span>
@@ -113,6 +113,8 @@ export function AnimatedMarqueeHero({
               <img
                 src={image.src}
                 alt={index < images.length ? image.alt : ""}
+                width="600"
+                height="600"
                 loading={index < 4 ? "eager" : "lazy"}
                 decoding="async"
               />
