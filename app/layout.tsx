@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./redesign.css";
 
 const publicUrl = "https://brazhits.com.br/pack-de-clipes/";
 const ogImage = `${publicUrl}og.png`;
@@ -8,50 +9,30 @@ const metaPixelScript = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=functi
 
 export const metadata: Metadata = {
   metadataBase: new URL(publicUrl),
-  title: "Super Pack +2.000 Clipes Full HD | BrazHits",
-  description: "Mais de 2.000 clipes em Full HD, organizados por gênero e prontos para carro, TV, PC e festas. Acesso vitalício e atualizações mensais.",
+  title: "BrazHits | Clipes e Músicas para Multimídia",
+  description: "Packs de clipes em Full HD e músicas organizados para carro, TV, PC e telão. Acesso vitalício e sem mensalidade.",
   alternates: { canonical: publicUrl },
-  icons: {
-    icon: `${publicUrl}logo-brazhits.png`,
-    shortcut: `${publicUrl}logo-brazhits.png`,
-    apple: `${publicUrl}logo-brazhits.png`,
-  },
+  icons: { icon: `${publicUrl}logo-brazhits.png`, apple: `${publicUrl}logo-brazhits.png` },
   openGraph: {
     url: publicUrl,
-    title: "+2.000 Clipes em Full HD | BrazHits",
-    description: "Todos os ritmos e muita qualidade para sua multimídia. Acesso vitalício e atualizações mensais.",
+    title: "BrazHits | Clipes e Músicas para Multimídia",
+    description: "Clipes em Full HD e músicas organizados para você baixar e reproduzir em qualquer tela.",
     type: "website",
     locale: "pt_BR",
     images: [{ url: ogImage, width: 1736, height: 909, alt: "BrazHits — mais de 2.000 clipes em Full HD" }],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "+2.000 Clipes em Full HD | BrazHits",
-    description: "Clipes em 1080p organizados por gênero para carro, TV, PC e festas — mesmo sem internet.",
-    images: [ogImage],
-  },
+  twitter: { card: "summary_large_image", title: "BrazHits | Clipes e Músicas para Multimídia", description: "Packs organizados para carro, TV, PC e telão.", images: [ogImage] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
         <script dangerouslySetInnerHTML={{ __html: utmifyPixelScript }} />
         <script dangerouslySetInnerHTML={{ __html: metaPixelScript }} />
       </head>
       <body>
-        <noscript>
-          <img
-            alt=""
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1147242417377452&ev=PageView&noscript=1"
-          />
-        </noscript>
+        <noscript><img alt="" height="1" width="1" style={{ display: "none" }} src="https://www.facebook.com/tr?id=1147242417377452&ev=PageView&noscript=1" /></noscript>
         {children}
       </body>
     </html>
