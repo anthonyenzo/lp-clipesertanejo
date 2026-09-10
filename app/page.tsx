@@ -245,7 +245,7 @@ export default function BrazHitsPrincipal() {
               <li><Check /> +500 clipes sertanejos 1080p</li><li><Check /> +1.000 músicas em MP3</li><li><Check /> Sertanejo, modão e forró</li><li><Check /> Acesso vitalício</li><li><Check /> Grupo VIP no WhatsApp</li><li><Check /> 15 dias de garantia</li>
             </ul>
             <div className="price"><span className="price-copy">Pagamento único<small>De <s>R$ 77,90</s> por apenas</small></span><strong><sup>R$</sup> 26<small>,90</small></strong></div>
-            <button className="offer-button secondary" type="button" onClick={() => setShowDownsell(true)}>Quero o Pack Sertanejo completo <Arrow /></button>
+            <button className="offer-button secondary" type="button" onClick={() => setShowDownsell(true)}>Quero o Pack Sertanejo <Arrow /></button>
           </article>
         </div>
       </section>
