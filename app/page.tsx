@@ -35,7 +35,7 @@ const individualPacks = [
     label: "Pack Sertanejo Raiz",
     tone: "amber",
     image: "pack-sertanejo-raiz-modao.jpg",
-    checkout: "https://checkout.brazhits.com.br/checkout/cms3qwbhf02ey01q2uric6p6b?offer=ct9lej3",
+    checkout: "https://checkout.wiven.com.br/checkout/cms3qwbhf02ey01q2uric6p6b?offer=ct9lej3",
   },
   {
     id: "forro-arrocha",
@@ -43,7 +43,7 @@ const individualPacks = [
     label: "Pack Forró + Arrocha",
     tone: "orange",
     image: "pack-forro-arrocha-2026.jpg",
-    checkout: "https://checkout.brazhits.com.br/checkout/cms50qbo101h701pxcrnwl7zn?offer=142tf5w",
+    checkout: "https://checkout.wiven.com.br/checkout/cms50qbo101h701pxcrnwl7zn?offer=142tf5w",
   },
   {
     id: "pagode",
@@ -51,7 +51,7 @@ const individualPacks = [
     label: "Pack Pagode",
     tone: "cyan",
     image: "pack-pagode-2026.jpg",
-    checkout: "https://checkout.brazhits.com.br/checkout/cms50tr7p01jg01pxv6hv8di0?offer=3wkrmwo",
+    checkout: "https://checkout.wiven.com.br/checkout/cms50tr7p01jg01pxv6hv8di0?offer=3wkrmwo",
   },
   {
     id: "rock-nacional",
@@ -59,7 +59,7 @@ const individualPacks = [
     label: "Pack Rock Nacional",
     tone: "violet",
     image: "pack-rock-nacional.jpg",
-    checkout: "https://checkout.brazhits.com.br/checkout/cms514n1801rx01ocfhh2ar5y?offer=d58z8ku",
+    checkout: "https://checkout.wiven.com.br/checkout/cms514n1801rx01ocfhh2ar5y?offer=d58z8ku",
   },
   {
     id: "gospel",
@@ -67,7 +67,7 @@ const individualPacks = [
     label: "Pack Gospel",
     tone: "blue",
     image: "pack-gospel-2026.jpg",
-    checkout: "https://checkout.brazhits.com.br/checkout/cms50v6lf01kk01pxtf8e60hm?offer=064ob69",
+    checkout: "https://checkout.wiven.com.br/checkout/cms50v6lf01kk01pxtf8e60hm?offer=064ob69",
   },
 ] as const;
 
