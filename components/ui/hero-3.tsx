@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, MotionConfig } from "framer-motion";
-import type { ReactNode } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { VideoPlayer } from "@/components/ui/video-player";
 
 export interface MarqueeHeroImage {
   src: string;
@@ -11,8 +11,8 @@ export interface MarqueeHeroImage {
 
 interface AnimatedMarqueeHeroProps {
   customerAvatars: MarqueeHeroImage[];
-  title: ReactNode;
-  description: string;
+  videoSrc: string;
+  videoPoster: string;
   ctaText: string;
   ctaHref: string;
   images: MarqueeHeroImage[];
@@ -25,8 +25,8 @@ const entrance = {
 
 export function AnimatedMarqueeHero({
   customerAvatars,
-  title,
-  description,
+  videoSrc,
+  videoPoster,
   ctaText,
   ctaHref,
   images,
@@ -58,30 +58,29 @@ export function AnimatedMarqueeHero({
           <span><strong>+10.000</strong> clientes ativos</span>
         </motion.div>
 
-        <motion.h1
+        <h1 className="video-player-sr-only">Packs de clipes para multimídia em Full HD</h1>
+
+        <motion.div
+          className="hero-video-frame"
           initial="hidden"
           animate="visible"
           variants={entrance}
           transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
         >
-          {title}
-        </motion.h1>
-
-        <motion.p
-          initial="hidden"
-          animate="visible"
-          variants={entrance}
-          transition={{ duration: 0.6, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {description}
-        </motion.p>
+          <VideoPlayer
+            src={videoSrc}
+            poster={videoPoster}
+            eyebrow="VEJA COMO FUNCIONA"
+            headline="Conheça os packs e veja como é simples usar"
+          />
+        </motion.div>
 
         <motion.div
           className="marquee-hero-actions"
           initial="hidden"
           animate="visible"
           variants={entrance}
-          transition={{ duration: 0.6, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="hero-pills" aria-label="Destaques da oferta">
             <span>Full HD 1080p</span><span>Acesso vitalício</span><span>Sem mensalidade</span>

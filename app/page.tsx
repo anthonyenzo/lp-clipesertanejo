@@ -141,8 +141,8 @@ export default function BrazHitsPrincipal() {
 
       <AnimatedMarqueeHero
         customerAvatars={heroCustomerAvatars}
-        title={<>O melhor acervo de clipes<br /><em>para sua multimídia</em></>}
-        description="Conteúdo em alta qualidade, organizado e atualizado para você reproduzir no carro, na TV, no PC ou no telão — mesmo sem internet."
+        videoSrc={`${BASE_PATH}/vsl-brazhits-set2026.mp4`}
+        videoPoster={`${BASE_PATH}/vsl-brazhits-poster.jpg`}
         ctaText="Quero escolher meu Pack"
         ctaHref="#ofertas"
         images={heroPackImages}
